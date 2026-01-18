@@ -72,8 +72,9 @@ def _load_font(size, bold=True):
     
     for name in font_names:
         try:
+            font_path = f'assets/fonts/{name}'
             logger.debug(f'trying font {name}')
-            return ImageFont.truetype(name, size)
+            return ImageFont.truetype(font_path, size)
         except IOError:
             continue
     

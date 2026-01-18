@@ -22,9 +22,22 @@ class DisplayDriver:
             except Exception as e:
                 logger.error(f"Failed to save display output: {e}")
         else:
-            logger.info("Sending image to physical display (mock_mode=False).")
-            # Hardware-specific display code should go here
-            pass
+            logger.info("Sending image to physical display.")
+            # HARDWARE MODE - Raspberry Pi with Waveshare 7.5" V2 e-ink display only
+            # Requires: pip install waveshare-epd (installed on Pi, not Windows)
+            try:
+                from waveshare_epd import epd7in5_V2
+                if not hasattr(self, 'epd'):
+                    self.epd = epd7in5_V2.EPD()
+                    self.epd.init()
+                    logger.info("E-ink display initialized")
+                
+                self.epd.display(self.epd.getbuffer(img))
+                logger.info("Image sent to e-ink hardware")
+            except ImportError:
+                logger.error("waveshare_epd library not found - install on Raspberry Pi")
+            except Exception as e:
+                logger.error(f"Display hardware error: {e}")
 
 
 if __name__ == "__main__":

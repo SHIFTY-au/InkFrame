@@ -1,1 +1,5 @@
 config/secrets.yaml
+venv/
+.venv/
+env/
+ENV/

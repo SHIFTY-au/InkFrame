@@ -1,0 +1,9 @@
+display:
+  width: 800
+  height: 480
+
+mock_mode: True
+
+weather:
+  location: "Penrith, NSW, AU"
+  refresh_interval_hours: 6

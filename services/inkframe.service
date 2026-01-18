@@ -1,0 +1,9 @@
+[Unit]
+Description=InkFrame Weather Display
+After=network-online.target
+
+[Service]
+Type=oneshot
+User=pi
+WorkingDirectory=/home/pi/inkframe
+ExecStart=/home/pi/inkframe/venv/bin/python -m src.main

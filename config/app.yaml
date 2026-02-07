@@ -4,7 +4,7 @@ display:
 
 background: "background2"
 
-mock_mode: True
+mock_mode: False
 
 weather:
   location: "Penrith, NSW, AU"

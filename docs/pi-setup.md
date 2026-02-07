@@ -52,7 +52,7 @@ sudo apt install -y git python3-pip python3-venv swig liblgpio-dev python3-lgpio
 ## Step 5: Clone Project Repository
 ```bash
 cd ~
-git clone <your-github-repo-url> inkframe
+git clone https://github.com/SHIFTY-au/InkFrame.git inkframe
 cd inkframe
 ```
 
@@ -101,6 +101,7 @@ Should print `Success` with no errors.
 ```bash
 cd ~/inkframe
 source venv/bin/activate
+pip install -e .
 python -m src.system.cli refresh
 ```
 

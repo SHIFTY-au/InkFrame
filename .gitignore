@@ -1,9 +1,6 @@
 config/secrets.yaml
-<<<<<<< HEAD
-venv
-=======
 venv/
 .venv/
 env/
 ENV/
->>>>>>> caba13977b6635eedeaa2fe9e0cee59fb70aa9d0
+*.egg-info/

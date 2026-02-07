@@ -22,7 +22,7 @@ def main(force=False):
         if not weather_data:
             logger.error('Failed to fetch weather data. Exiting.')
             sys.exit(1)
-        image = render_weather(weather_data)
+        image = render_weather(weather_data, config)
         driver = DisplayDriver(config)
         driver.show(image)
         scheduler.record_refresh()

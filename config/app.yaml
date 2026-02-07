@@ -2,7 +2,9 @@ display:
   width: 800
   height: 480
 
-mock_mode: False
+background: "background2"
+
+mock_mode: True
 
 weather:
   location: "Penrith, NSW, AU"

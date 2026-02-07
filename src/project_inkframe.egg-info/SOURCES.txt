@@ -1,9 +1,0 @@
-README.md
-pyproject.toml
-src/project_inkframe.egg-info/PKG-INFO
-src/project_inkframe.egg-info/SOURCES.txt
-src/project_inkframe.egg-info/dependency_links.txt
-src/project_inkframe.egg-info/top_level.txt
-src/weather/__init__.py
-src/weather/api_client.py
-src/weather/models.py

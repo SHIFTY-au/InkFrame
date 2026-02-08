@@ -2,6 +2,7 @@ import PIL
 import logging
 
 from PIL import Image, ImageDraw, ImageFont
+from datetime import datetime
 
 logger = logging.getLogger('inkFrame')
 
@@ -61,6 +62,9 @@ LAYOUT_CONFIGS = {
 }
 
 def get_icon(condition_text):
+    if not condition_text:
+        return None
+    key = condition_text.strip()
     lookup = {
         'Sunny': 'sunny.png',
         'Partly Cloudy': 'partly_cloudy.png',
@@ -111,15 +115,13 @@ def get_icon(condition_text):
         'Patchy light snow in area with thunder': 'storm.png',
         'Moderate or heavy snow in area with thunder': 'storm.png',
     }
-
-    try:
-        value = lookup[condition_text]
-        icon = f'assets/{value}'
-        logger.debug(f'weather icon selected {value}.')
-        return icon
-    except KeyError:
-        logger.warning(f"KeyError: Key '{condition_text}' was not found.")
+    value = lookup.get(key)
+    if not value:
+        logger.warning(f"Icon lookup missing for condition '{key}'")
         return None
+    icon = f'assets/{value}'
+    logger.debug(f'weather icon selected {value} for condition "{key}".')
+    return icon
 
 def _calculate_font_sizes(box_height, box_type="value"):
     """
@@ -139,8 +141,8 @@ def _calculate_font_sizes(box_height, box_type="value"):
         # Main value in box - 35% of box height
         return int(box_height * 0.35)
     elif box_type == "label":
-        # Small label text - 12% of box height
-        return int(box_height * 0.12)
+        # Small label text - 15% of box height
+        return int(box_height * 0.15)
     elif box_type == "tiny":
         # Very small text (timestamps, etc) - 40% of box height
         return int(box_height * 0.40)
@@ -244,6 +246,7 @@ def render_weather(weather_data, config=None):
         font_box_value = _load_font(_calculate_font_sizes(layout['high_box']['height'], "value"), bold=True)
         font_box_label = _load_font(_calculate_font_sizes(layout['high_box']['height'], "label"), bold=False)
         font_updated = _load_font(_calculate_font_sizes(layout['updated_box']['height'], "tiny"), bold=False)
+        font_forecast_temp = _load_font(_calculate_font_sizes(layout['forecast_box']['height'], "label"), bold=True)
 
         today_center = layout['today_box']['center']
         high_center = layout['high_box']['center']
@@ -251,9 +254,10 @@ def render_weather(weather_data, config=None):
         rain_center = layout['rain_box']['center']
         humidity_center = layout['humidity_box']['center']
         updated_center = layout['updated_box']['center']
+        forecast_box = layout['forecast_box']
 
         # --- DRAWING TODAY PANEL (Top-Left) ---
-        temp = f"{int(getattr(weather_data, 'temp', 0))}"
+        temp = f"{int(getattr(weather_data.current_weather, 'temp', 0))}"
 
         # Position temp on LEFT side, icon on RIGHT side of today box
         temp_x = today_center[0] - 70  # Shift temp left
@@ -263,7 +267,7 @@ def render_weather(weather_data, config=None):
         draw.text((temp_x, today_center[1]), temp, fill=0, font=font_today_temp, anchor="mm")
 
         # Get and paste icon (right side, bigger)
-        icon_path = get_icon(getattr(weather_data, 'condition'))
+        icon_path = get_icon(getattr(weather_data.current_weather, 'condition'))
         if icon_path:
             icon = Image.open(icon_path).resize((140, 140))  # Bigger icon
             icon_x = int(icon_x_center - 70)  # Center the 140px icon
@@ -276,27 +280,83 @@ def render_weather(weather_data, config=None):
 
         # High temp
         draw.text((high_center[0], high_center[1] - 30), "HIGH", fill=80, font=font_box_label, anchor="mm")
-        draw.text((high_center[0], high_center[1] + 20), f"{int(getattr(weather_data, 'temp', 0))}°", fill=0, font=font_box_value_small, anchor="mm")
+        draw.text((high_center[0], high_center[1] + 20), f"{int(getattr(weather_data.current_weather, 'temp_max', 0))}", fill=0, font=font_box_value_small, anchor="mm")
 
         # Low temp
         draw.text((low_center[0], low_center[1] - 30), "LOW", fill=80, font=font_box_label, anchor="mm")
-        draw.text((low_center[0], low_center[1] + 20), f"{int(getattr(weather_data, 'temp', 0))}°", fill=0, font=font_box_value_small, anchor="mm")
+        draw.text((low_center[0], low_center[1] + 20), f"{int(getattr(weather_data.current_weather, 'temp_min', 0))}", fill=0, font=font_box_value_small, anchor="mm")
 
         # Rain
         draw.text((rain_center[0], rain_center[1] - 30), "RAIN", fill=80, font=font_box_label, anchor="mm")
-        draw.text((rain_center[0], rain_center[1] + 20), f"{getattr(weather_data, 'precip', 0)}mm", fill=0, font=font_box_value_small, anchor="mm")
+        draw.text((rain_center[0], rain_center[1] + 20), f"{getattr(weather_data.current_weather, 'precip', 0)}mm", fill=0, font=font_box_value_small, anchor="mm")
 
         # Humidity
         draw.text((humidity_center[0], humidity_center[1] - 30), "HUMIDITY", fill=80, font=font_box_label, anchor="mm")
-        draw.text((humidity_center[0], humidity_center[1] + 20), f"{getattr(weather_data, 'humidity', 0)}%", fill=0, font=font_box_value_small, anchor="mm")
+        draw.text((humidity_center[0], humidity_center[1] + 20), f"{getattr(weather_data.current_weather, 'humidity', 0)}%", fill=0, font=font_box_value_small, anchor="mm")
 
         # Updated timestamp - read from refreshed.txt file
-        from datetime import datetime
         # Use current time as the updated timestamp
         last_refresh = datetime.now()
         timestamp_text = last_refresh.strftime("%H:%M %d/%m")
         
         draw.text(updated_center, timestamp_text, fill=80, font=font_updated, anchor="mm")
+        
+        # --- DRAWING THREE-DAY FORECAST (Top-Right) ---
+        forecast_days = getattr(weather_data, 'forecast_days', [])
+        
+        if forecast_days:
+            # Calculate column positions with padding
+            forecast_box_x = forecast_box['x']
+            forecast_box_y = forecast_box['y']
+            forecast_box_width = forecast_box['width']
+            forecast_box_height = forecast_box['height']
+            
+            # Padding between columns
+            padding = 15
+            usable_width = forecast_box_width - (padding * 2)  # Left and right padding
+            col_width = usable_width / 3
+            
+            # Column x-centers
+            col_x_positions = [
+                forecast_box_x + padding + (col_width / 2),
+                forecast_box_x + padding + (col_width / 2) + col_width,
+                forecast_box_x + padding + (col_width / 2) + (col_width * 2)
+            ]
+            
+            # Icon size (smaller than today's)
+            icon_size = 80
+            
+            # Y positions for icon and temp within the forecast box
+            icon_y = forecast_box_y + 70
+            temp_y = icon_y + icon_size + 20
+            
+            for i, forecast_day in enumerate(forecast_days[:3]):  # Limit to 3 days
+                col_x = col_x_positions[i]
+                
+                # Day name (e.g. Tue, Wed) above the icon
+                day_name = ''
+                date_str = getattr(forecast_day, 'date', None)
+                if date_str:
+                    try:
+                        day_name = datetime.strptime(date_str, '%Y-%m-%d').strftime('%a')
+                    except Exception:
+                        day_name = ''
+                if day_name:
+                    draw.text((col_x, icon_y - 20), day_name, fill=80, font=font_box_label, anchor="mm")
+                
+                # Draw icon
+                icon_path = get_icon(getattr(forecast_day, 'condition', ''))
+                if icon_path:
+                    try:
+                        icon = Image.open(icon_path).resize((icon_size, icon_size))
+                        icon_x = int(col_x - (icon_size / 2))
+                        img.paste(icon, (icon_x, icon_y), icon)
+                    except Exception as e:
+                        logger.warning(f"Could not load forecast icon for day {i+1}: {e}")
+                
+                # Draw temperature
+                forecast_temp = f"{int(getattr(forecast_day, 'temp_max', 0))}"
+                draw.text((col_x, temp_y), forecast_temp, fill=0, font=font_forecast_temp, anchor="mm")
         
         logger.debug('Display rendered (new layout).')
         return img

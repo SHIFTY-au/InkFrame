@@ -60,3 +60,88 @@
 2026-02-07 18:06:08,541 - inkFrame - INFO - Using background: background2
 2026-02-07 18:06:08,652 - inkFrame - INFO - DisplayDriver initialized (mock_mode=True)
 2026-02-07 18:06:08,680 - inkFrame - INFO - Saved display output to logs/display_output.png
+2026-02-08 12:29:39,655 - inkFrame - INFO - InkFrame Weather App Starting.
+2026-02-08 12:29:39,688 - inkFrame - INFO - Fetching weather for Penrith, NSW, AU
+2026-02-08 12:29:40,262 - inkFrame - INFO - Using background: background2
+2026-02-08 12:31:29,606 - inkFrame - INFO - InkFrame Weather App Starting.
+2026-02-08 12:31:29,614 - inkFrame - INFO - Fetching weather for Penrith, NSW, AU
+2026-02-08 12:31:29,910 - inkFrame - INFO - Using background: background2
+2026-02-08 12:31:30,021 - inkFrame - WARNING - KeyError: Key 'Partly Cloudy ' was not found.
+2026-02-08 12:31:30,025 - inkFrame - INFO - DisplayDriver initialized (mock_mode=True)
+2026-02-08 12:31:30,060 - inkFrame - INFO - Saved display output to logs/display_output.png
+2026-02-08 13:13:03,595 - inkFrame - INFO - InkFrame Weather App Starting.
+2026-02-08 13:13:03,628 - inkFrame - INFO - Refresh not needed yet
+2026-02-08 13:13:21,261 - inkFrame - INFO - InkFrame Weather App Starting.
+2026-02-08 13:13:21,282 - inkFrame - INFO - Fetching weather for Penrith, NSW, AU
+2026-02-08 13:13:21,742 - inkFrame - INFO - Using background: background2
+2026-02-08 13:13:21,889 - inkFrame - WARNING - KeyError: Key 'Partly Cloudy ' was not found.
+2026-02-08 13:13:21,893 - inkFrame - INFO - DisplayDriver initialized (mock_mode=True)
+2026-02-08 13:13:21,960 - inkFrame - INFO - Saved display output to logs/display_output.png
+2026-02-08 13:34:04,211 - inkFrame - INFO - InkFrame Weather App Starting.
+2026-02-08 13:34:04,244 - inkFrame - INFO - Fetching weather for Penrith, NSW, AU
+2026-02-08 13:34:04,699 - inkFrame - INFO - Using background: background2
+2026-02-08 13:34:04,864 - inkFrame - WARNING - KeyError: Key 'Partly Cloudy ' was not found.
+2026-02-08 13:34:04,868 - inkFrame - INFO - DisplayDriver initialized (mock_mode=True)
+2026-02-08 13:34:04,897 - inkFrame - INFO - Saved display output to logs/display_output.png
+2026-02-08 13:59:15,016 - inkFrame - INFO - InkFrame Weather App Starting.
+2026-02-08 13:59:15,016 - inkFrame - INFO - Refresh not needed yet
+2026-02-08 13:59:43,915 - inkFrame - INFO - InkFrame Weather App Starting.
+2026-02-08 13:59:43,955 - inkFrame - INFO - Fetching weather for Penrith, NSW, AU
+2026-02-08 13:59:44,421 - inkFrame - INFO - Using background: background2
+2026-02-08 13:59:44,584 - inkFrame - INFO - DisplayDriver initialized (mock_mode=True)
+2026-02-08 13:59:44,622 - inkFrame - INFO - Saved display output to logs/display_output.png
+2026-02-08 14:11:41,585 - inkFrame - INFO - InkFrame Weather App Starting.
+2026-02-08 14:11:41,614 - inkFrame - INFO - Fetching weather for Penrith, NSW, AU
+2026-02-08 14:11:42,153 - inkFrame - INFO - Using background: background2
+2026-02-08 14:11:42,330 - inkFrame - INFO - DisplayDriver initialized (mock_mode=True)
+2026-02-08 14:11:42,399 - inkFrame - INFO - Saved display output to logs/display_output.png
+2026-02-08 14:13:10,072 - inkFrame - INFO - InkFrame Weather App Starting.
+2026-02-08 14:13:10,098 - inkFrame - INFO - Fetching weather for Penrith, NSW, AU
+2026-02-08 14:13:10,374 - inkFrame - INFO - Using background: background2
+2026-02-08 14:13:10,521 - inkFrame - INFO - DisplayDriver initialized (mock_mode=True)
+2026-02-08 14:13:10,632 - inkFrame - INFO - Saved display output to logs/display_output.png
+2026-02-08 14:13:56,045 - inkFrame - INFO - InkFrame Weather App Starting.
+2026-02-08 14:13:56,074 - inkFrame - INFO - Fetching weather for Penrith, NSW, AU
+2026-02-08 14:13:56,321 - inkFrame - INFO - Using background: background2
+2026-02-08 14:13:56,460 - inkFrame - INFO - DisplayDriver initialized (mock_mode=True)
+2026-02-08 14:13:56,493 - inkFrame - INFO - Saved display output to logs/display_output.png
+2026-02-08 14:14:39,043 - inkFrame - INFO - InkFrame Weather App Starting.
+2026-02-08 14:14:39,066 - inkFrame - INFO - Fetching weather for Penrith, NSW, AU
+2026-02-08 14:14:39,327 - inkFrame - INFO - Using background: background2
+2026-02-08 14:14:39,454 - inkFrame - INFO - DisplayDriver initialized (mock_mode=True)
+2026-02-08 14:14:39,479 - inkFrame - INFO - Saved display output to logs/display_output.png
+2026-02-08 14:15:08,110 - inkFrame - INFO - InkFrame Weather App Starting.
+2026-02-08 14:15:08,136 - inkFrame - INFO - Fetching weather for Penrith, NSW, AU
+2026-02-08 14:15:08,610 - inkFrame - INFO - Using background: background2
+2026-02-08 14:15:08,781 - inkFrame - INFO - DisplayDriver initialized (mock_mode=True)
+2026-02-08 14:15:08,817 - inkFrame - INFO - Saved display output to logs/display_output.png
+2026-02-08 14:15:35,641 - inkFrame - INFO - InkFrame Weather App Starting.
+2026-02-08 14:15:35,666 - inkFrame - INFO - Fetching weather for Penrith, NSW, AU
+2026-02-08 14:15:35,917 - inkFrame - INFO - Using background: background2
+2026-02-08 14:15:36,044 - inkFrame - INFO - DisplayDriver initialized (mock_mode=True)
+2026-02-08 14:15:36,089 - inkFrame - INFO - Saved display output to logs/display_output.png
+2026-02-08 14:16:09,478 - inkFrame - INFO - InkFrame Weather App Starting.
+2026-02-08 14:16:09,507 - inkFrame - INFO - Fetching weather for Penrith, NSW, AU
+2026-02-08 14:16:09,752 - inkFrame - INFO - Using background: background2
+2026-02-08 14:16:09,938 - inkFrame - INFO - DisplayDriver initialized (mock_mode=True)
+2026-02-08 14:16:10,002 - inkFrame - INFO - Saved display output to logs/display_output.png
+2026-02-08 14:16:35,589 - inkFrame - INFO - InkFrame Weather App Starting.
+2026-02-08 14:16:35,612 - inkFrame - INFO - Fetching weather for Penrith, NSW, AU
+2026-02-08 14:16:35,858 - inkFrame - INFO - Using background: background2
+2026-02-08 14:16:35,975 - inkFrame - INFO - DisplayDriver initialized (mock_mode=True)
+2026-02-08 14:16:35,998 - inkFrame - INFO - Saved display output to logs/display_output.png
+2026-02-08 14:17:01,537 - inkFrame - INFO - InkFrame Weather App Starting.
+2026-02-08 14:17:01,560 - inkFrame - INFO - Fetching weather for Penrith, NSW, AU
+2026-02-08 14:17:01,801 - inkFrame - INFO - Using background: background2
+2026-02-08 14:17:01,957 - inkFrame - INFO - DisplayDriver initialized (mock_mode=True)
+2026-02-08 14:17:01,999 - inkFrame - INFO - Saved display output to logs/display_output.png
+2026-02-08 14:22:54,307 - inkFrame - INFO - InkFrame Weather App Starting.
+2026-02-08 14:22:54,336 - inkFrame - INFO - Fetching weather for Penrith, NSW, AU
+2026-02-08 14:22:54,828 - inkFrame - INFO - Using background: background2
+2026-02-08 14:22:55,083 - inkFrame - INFO - DisplayDriver initialized (mock_mode=True)
+2026-02-08 14:22:55,141 - inkFrame - INFO - Saved display output to logs/display_output.png
+2026-02-08 14:23:59,222 - inkFrame - INFO - InkFrame Weather App Starting.
+2026-02-08 14:23:59,246 - inkFrame - INFO - Fetching weather for Penrith, NSW, AU
+2026-02-08 14:23:59,485 - inkFrame - INFO - Using background: background2
+2026-02-08 14:23:59,600 - inkFrame - INFO - DisplayDriver initialized (mock_mode=True)
+2026-02-08 14:23:59,629 - inkFrame - INFO - Saved display output to logs/display_output.png

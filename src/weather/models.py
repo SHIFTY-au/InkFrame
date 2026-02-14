@@ -97,11 +97,10 @@ class ForecastData:
         forecast = data.get('forecast', {}) or {}
         forecast_day_list = forecast.get('forecastday', []) or []
 
-        # Prefer next 3 days (skip today) if API returned 4+ days; otherwise fall back to first 3 days
-        if len(forecast_day_list) >= 4:
-            source_days = forecast_day_list[1:4]  # skip today (0), use 1..3
-        else:
-            source_days = forecast_day_list[0:3]  # fallback for 3-day export
+        # Always skip index 0 (today) and use the next 3 days
+        # If API returns 4+ days: use [1:4] (tomorrow, +1, +2)
+        # If API returns exactly 3 days: still use [1:3] since [0] is today
+        source_days = forecast_day_list[1:4]
 
         forecast_days = []
         for day in source_days:

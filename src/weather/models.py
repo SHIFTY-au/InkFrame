@@ -97,10 +97,9 @@ class ForecastData:
         forecast = data.get('forecast', {}) or {}
         forecast_day_list = forecast.get('forecastday', []) or []
 
-        # Always skip index 0 (today) and use the next 3 days
-        # If API returns 4+ days: use [1:4] (tomorrow, +1, +2)
-        # If API returns exactly 3 days: still use [1:3] since [0] is today
-        source_days = forecast_day_list[1:4]
+        # Always skip index 0 (today) and use all remaining days
+        # This handles both 3-day API responses and 4+ day responses
+        source_days = forecast_day_list[1:]
 
         forecast_days = []
         for day in source_days:
